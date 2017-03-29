@@ -1,0 +1,14 @@
+<sly data-sly-use.contactForm="com.ng2.aem.core.components.ContactDetailsUse" data-sly-use.emptyRenderer="emptyContactDetails.html"
+     data-sly-call="${emptyRenderer.emptycontactFormTemplate @ form=contactForm}">
+</sly>
+<sly data-sly-test="${contactForm.contactDetails.title && contactForm.contactDetails.description}">
+<div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h1>${contactForm.contactDetails.title @ context='html'}</h1>
+                    <h2>${contactForm.contactDetails.description @ context='html' }</h2>
+                      <contact-details message='${contactForm.contactDetails.contactJson}'>Loading contact form......</contact-details>
+                </div>
+            </div>
+        </div>
+</sly>

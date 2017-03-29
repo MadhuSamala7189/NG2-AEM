@@ -1,0 +1,71 @@
+var gulp = require('gulp');
+var gutil = require('gulp-util');
+var del = require('del');
+var webpack = require('webpack');
+var webpackConfig = require('./webpack.config.js');
+var clientlibify = require('gulp-clientlibify');
+
+//deleting the files inside dist folder
+gulp.task('clean', function(cb){
+    return  del(['dist/*'], cb);
+});
+
+// modify some webpack config options
+var myDevConfig = Object.create(webpackConfig);
+myDevConfig.devtool = "sourcemap";
+myDevConfig.debug = true;
+
+// create a single instance of the compiler to allow caching
+var devCompiler = webpack(myDevConfig);
+
+gulp.task("build-dev" ,  function(callback) {
+    // run webpack
+    devCompiler.run(function(err, stats) {
+        if(err) throw new gutil.PluginError("build-dev", err);
+        gutil.log("[build-dev]", stats.toString({
+            colors: true
+        }));
+        callback();
+    });
+});
+
+gulp.task('clientlibify', ['build-dev'],function() {
+    return gulp.src('dist/*')
+        .pipe(clientlibify({
+            dest: 'dist',
+            jsDir: 'dist',
+
+            // set `installPackage` to `true` to deploy to an AEM instance
+            installPackage: true,
+
+            categories: ['ng2-aem/test'],
+            embed: [],
+            dependencies: [],
+
+            // package options
+            packageName: 'ng2-aem',
+            packageVersion: '0.1',
+            packageGroup: 'NG2 AEM',
+            packageDescription: 'CRX package installed using the gulp-clientlibify plugin',
+
+            // deploy options
+            // Note: these options would likely come from environment vars
+            deployScheme: 'http',
+            deployHost: 'localhost',
+            deployPort: '4512',
+            deployUsername: 'admin',
+            deployPassword: 'admin'
+        }))
+        .pipe(gulp.dest('dist'))
+});
+
+
+gulp.task('watch', function() {
+    //gulp.watch('src/app/**/*.ts', ['build-dev','clientlibify']);
+    gulp.watch('src/app/**/*.ts', ['clientlibify']);
+
+});
+
+gulp.task("dev", ["clientlibify","watch"])
+//gulp.task("dev", ["build-dev","clientlibify"])
+//gulp.task("dev", ["build-dev","watch","clientlibify"])

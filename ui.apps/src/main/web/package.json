@@ -1,0 +1,44 @@
+{
+  "name": "Angular2-AEM-Gulp",
+  "version": "0.1.0",
+  "author" : "Madhukar Samala",
+  "private": true,
+  "scripts": {
+    "build": "gulp build",
+    "postinstall": "typings install",
+    "aemsync":"gulp sync",
+    "watch":"gulp watch"
+     },
+  "dependencies": {
+    "@angular/common": "2.4.6",
+    "@angular/compiler": "2.4.6",
+    "@angular/core": "2.4.6",
+    "@angular/forms": "2.4.6",
+    "@angular/http": "2.4.6",
+    "@angular/platform-browser": "2.4.6",
+    "@angular/platform-browser-dynamic": "2.4.6",
+    "@angular/router": "3.4.6",
+    "core-js": "^2.4.1",
+    "ie-shim": "^0.1.0",
+    "reflect-metadata": "^0.1.9",
+    "rxjs": "5.0.2",
+    "zone.js": "0.7.6"
+  },
+  "devDependencies": {
+    "angular2-template-loader": "0.6.0",
+    "cross-env": "3.1.3",
+    "html-webpack-plugin": "2.24.1",
+    "raw-loader": "0.5.1",
+    "ts-loader": "1.3.0",
+    "typescript": "2.1.4",
+    "typings": "2.0.0",
+    "webpack": "1.14.0",
+    "webdav-sync": "^0.5.0",
+    "del": "^2.2.0",
+    "gulp": "^3.9.0",
+    "gulp-util": "^3.0.7",
+    "path": "^0.12.7",
+    "gulp-clientlibify": "^0.3.0",
+    "gulp-aemsync":"^1.0.1"
+  }
+}

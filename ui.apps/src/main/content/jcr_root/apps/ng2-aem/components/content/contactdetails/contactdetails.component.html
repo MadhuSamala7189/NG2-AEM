@@ -1,0 +1,110 @@
+
+
+<form id="contact-form" [formGroup]="contactForm" role="form" *ngIf="!showFormResults">
+    <div class="messages"></div>
+    <div class="controls">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="form_name">{{VaulesFromAemDailog.firstNameLabel}} *</label>
+                    <input formControlName="firstName" id="firstName" type="text" class="form-control" placeholder="Please enter your firstname *" >
+                    <div class="control-group error">
+					<display-errors [control]="contactForm.controls.firstName"></display-errors>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="form_lastname">{{VaulesFromAemDailog.lastNameLabel}} *</label>
+                    <input  id="lastName" formControlName="lastName" type="text"  class="form-control" placeholder="Please enter your lastname *" >
+                   <display-errors [control]="contactForm.controls.lastName"></display-errors>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="form_email">{{VaulesFromAemDailog.emailLabel}} *</label>
+                    <input id="email" formControlName="email" type="email" class="form-control" placeholder="Please enter your email *">
+                     <display-errors [control]="contactForm.controls.email"></display-errors>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="form_phone">Phone</label>
+                    <input id="phone" formControlName="phone" type="tel"  class="form-control" placeholder="Please enter your phone">
+                    <display-errors [control]="contactForm.controls.phone"></display-errors>
+                </div>
+            </div>
+        </div>
+
+		<div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="form_email">{{VaulesFromAemDailog.addressLabel}} *</label>
+                    <input  #fieldAddress id="address" formControlName="address" type="text"  (keyup)="getSuggestionsList(fieldAddress.value)" (blur)="addressOnBlur(fieldAddress.value)"  autocomplete="off" class="form-control" placeholder="Address auto suggestion *" >
+                   <display-errors [control]="contactForm.controls.address"></display-errors>
+
+                    <div *ngIf="suggestions && suggestions.length">
+    					<div *ngFor="let suggestion of suggestions">
+        					<a href="#" (click)="getAddressDetails(suggestion)">
+                				{{suggestion}}
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            </div>
+
+             <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="form_state">State *</label>
+                    <input id="state" formControlName="state" type="text"  class="form-control" placeholder="Please enter your state *" >
+                    <display-errors [control]="contactForm.controls.state"></display-errors>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="form_zipcode">zipcode</label>
+                    <input id="zipcode" formControlName="zipcode" type="text" class="form-control" placeholder="Please enter your zipcode">
+                    <display-errors [control]="contactForm.controls.zipcode"></display-errors>
+                </div>
+            </div>
+        </div>
+
+         <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="form_country">country *</label>
+                    <input id="country" formControlName="country" type="text"  class="form-control" placeholder="Please enter your country *" >
+                    <display-errors [control]="contactForm.controls.country"></display-errors>
+                </div>
+            </div>
+            </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <input type="submit" class="btn btn-success btn-send" value="Send message" [disabled]="!contactForm.valid" (click)="formSubmit()">
+            </div>
+        </div>
+
+      
+    </div>
+
+</form>
+
+<div id="form-success" *ngIf="showFormResults">
+    First Name : {{this.contactForm.value.firstName}} <br/>
+    Last Name : {{this.contactForm.value.lastName}} <br/>
+    Email : {{this.contactForm.value.email}} <br/>
+    Address : {{this.contactForm.value.address}} <br/>
+    State : {{this.contactForm.value.state}} <br/>
+    Zipcode : {{this.contactForm.value.zipcode}} <br/>
+    Country : {{this.contactForm.value.country}} <br/>
+</div>

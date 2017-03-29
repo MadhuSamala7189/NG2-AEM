@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/apps/ng2-aem">
+        <exclude pattern="/apps/ng2-aem/install" />
+    </filter>
+    <filter root="/apps/sling" />
+    <filter root="/etc/designs/ng2-aem"/>
+</workspaceFilter>

@@ -1,0 +1,11 @@
+
+<template data-sly-template.emptycontactFormTemplate="${@ form}">
+
+<p data-sly-test="${!form.contactDetails.title && !form.contactDetails.description}"  data-emptytext="Contact Details Form - Author title & desc in the dialog" class="cq-placeholder"></p>
+
+    <sly data-sly-test="${form.contactDetails.title || form.contactDetails.description}">   
+    	<p  data-sly-test="${!form.contactDetails.title}" class="cq-placeholder" data-emptytext="Contact Form - Author title in the dialog"></p>
+		<p data-sly-test="${!form.contactDetails.description}" class="cq-placeholder"  data-emptytext="Contact Form - Author Description in the dialog"></p>
+    </sly>
+
+</template>
