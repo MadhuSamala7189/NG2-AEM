@@ -13,7 +13,9 @@ If you have a running AEM instance you can build and package the whole project a
     
 This application is developed using AEM, sightly, Angular2, Typescript, RXJS , NPM (Node JS) , Webpack, Gulp.
  
-Install Node JS (https://nodejs.org/en/) in local env to build the project
+Install Node JS (https://nodejs.org/en/) in local env to build the project.
+
+Update the Uber jar dependency version in the main pom.xml to match with your local version.
  
 Install CORS google chrome plugin to make the address autosuggestion work on Form component. 
 
