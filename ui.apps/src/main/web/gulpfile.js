@@ -31,7 +31,7 @@ gulp.task("run-webpack" , ['clean'], (callback) => {
 gulp.task('aemsync', () => {
     return gulp.src('../content/jcr_root/etc/designs/ng2-aem/clientlib-site/js/')
         .pipe(aemSync({
-            targets: ['http://admin:admin@localhost:4512']
+            targets: ['http://admin:admin@localhost:4502']
         }));
 });
 
