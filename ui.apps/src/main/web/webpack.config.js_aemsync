@@ -2,7 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var AemSyncPlugin = require('aem-sync-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var jcrPath = path.join(__dirname, '..', 'content', 'jcr_root', 'etc', 'designs', 'aem-ang2', 'clientlib-site');
+var jcrPath = path.join(__dirname, '..', 'content', 'jcr_root', 'etc', 'designs', 'ng2-aem', 'clientlib-site');
 module.exports = {
 
   entry: {
@@ -20,25 +20,15 @@ module.exports = {
   module: {
     loaders: [
       {test: /\.component.ts$/, loader: 'ts!angular2-template'},
-      {test: /\.ts$/, exclude: /\.component.ts$/, loader: 'ts'},
-      {test: /\.html$/, loader: 'raw'},
-      {test: /\.css$/, loader: 'raw'}
+      {test: /\.ts$/, exclude: /\.component.ts$/, loader: 'ts'}
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.ts', '.html', '.css']
+    extensions: ['', '.js', '.ts']
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       name: 'polyfills'
-    }),
-    new HtmlWebpackPlugin({
-      template: './src/index.html'
-    }),
-    new webpack.DefinePlugin({
-      app: {
-        environment: JSON.stringify(process.env.APP_ENVIRONMENT || 'development')
-      }
     }),
     new AemSyncPlugin({
         targets: [
